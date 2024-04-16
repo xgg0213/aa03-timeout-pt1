@@ -18,7 +18,8 @@ intervalCount(function() {
 
 function intervalCount(cb, delay, amount) {
 
-const intervalStop = setInterval(() => {
+const intervalStop = setInterval(() => { // setInterval is not a callback as it is not supplied to the function, but available in the global space
+                                         // setInterval is written in a way that the first argument is being invoked naturally
   cb();
   amount--;
 
