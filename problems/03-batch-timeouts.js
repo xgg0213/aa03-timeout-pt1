@@ -31,21 +31,38 @@ const timeoutObjs = batchTimeouts(tasks, delays);
 
 console.log(timeoutObjs); // [ Timeout {...},  Timeout {...}, Timeout {...} ]
 ***********************************************************************/
+function batchTimeouts(tasks, delays) {
+  debugger
+if (tasks.length === 0) {
+  return [];
+}
+else {
+for (let el in tasks) {
+  let el1 = tasks[el];
+  let el2 = delays[el];
 
-function batchTimeouts(callbacks, delays) {
-let arr = [];
-  for (let i = 0; i < callbacks.length; i++) {
-let el = callbacks[i];
-let el2 = delays[i];
-arr.push(setTimeout(el, el2)); //setTimeout is being invoked and the returned value is pushed into the array
-
-// line 43 & 44 will do the same as line 40
-// let id = setTimeout(el, el2);
-// arr.push(id);
+  return [setTimeout(el1, el2)].concat(batchTimeouts(tasks.slice(1), delays.slice(1)))
+}
 
 }
-return arr;
+
 }
+
+
+// function batchTimeouts(callbacks, delays) {
+// let arr = [];
+//   for (let i = 0; i < callbacks.length; i++) {
+// let el = callbacks[i];
+// let el2 = delays[i];
+// arr.push(setTimeout(el, el2)); //setTimeout is being invoked and the returned value is pushed into the array
+
+// // line 43 & 44 will do the same as line 40
+// // let id = setTimeout(el, el2);
+// // arr.push(id);
+
+// }
+// return arr;
+// }
 
 
 const sayHello = () => console.log('hi');
