@@ -17,9 +17,20 @@ intervalCount(function() {
 ***********************************************************************/
 
 function intervalCount(cb, delay, amount) {
-  // Your code here 
+function intervalWrap() {
+while (amount > 0) {
+  setInterval(cb, delay);
+  amount--;
 }
 
+}
+  clearInterval(intervalWrap)
+}
+
+
+intervalCount(function() {
+  console.log('hi');
+}, 500, 3); // prints 'hi' at 500ms intervals a total of 3 times
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 try {
   module.exports = intervalCount;
